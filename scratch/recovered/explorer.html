@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tatvarth Heights - Floor Explorer</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;400&amp;family=IBM+Plex+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1a1c1a",
+              secondary: "#a8895f",
+              accent: "#a8895f",
+              background: "#faf9f6",
+              surface: "#faf9f6",
+              "on-surface": "#1a1c1a",
+              "on-surface-variant": "rgba(26,28,26,0.6)",
+              "surface-container": "#efeeeb",
+              "surface-container-low": "#f4f3f1",
+              "surface-container-high": "#e9e8e5",
+            
+                departments: ['01. Operating Theater A', '02. Operating Theater B', '03. Post-Op Recovery', '04. Sterilization Unit'],
+                imagePrompt: 'A pristine, state-of-the-art medical recovery room designed with architectural minimalism. Soft, indirect lighting illuminates pale stone walls and advanced, streamlined medical equipment seamlessly integrated into the room structure. The feeling is calm, restorative, and highly technical. Wide angle, deep focus.'
+            },
+            {
+                level: '5',
+                title: 'Specialized Oncology',
+                departments: ['01. Infusion Center', '02. Specialist Consulting', '03. Patient Lounge', '04. Pharmacy Depot'],
+                imagePrompt: 'A tranquil medical patient lounge with a high-end residential aesthetic. Warm oak paneling, comfortable modern seating in neutral tones, and large windows bringing in soft daylight. The space feels healing, uncrowded, and meticulously designed to lower stress. Minimalist editorial photography style.'
+            },
+            {
+                level: '4',
+                title: 'Cardiology & Imaging',
+                departments: ['01. MRI Suite', '02. CT Scanning', '03. Cardiac Testing', '04. Physician Offices'],
+                imagePrompt: 'A minimalist corridor in a modern diagnostic clinic. The walls are a soft concrete grey, illuminated by precise linear LED strips embedded in the ceiling. The perspective draws the eye down the quiet hallway, emphasizing structural clean lines and an atmosphere of absolute precision and stillness.'
+            },
+            {
+                level: '3',
+                title: 'Pediatrics & Family Medicine',
+                departments: ['01. Waiting & Play Area', '02. Examination Rooms 1-8', '03. Vaccination Clinic'],
+                imagePrompt: 'A modern, sophisticated pediatric waiting area. Unlike typical bright childish colors, it uses a refined palette of soft muted pastels, natural wood structures, and ample white space. Geometric shapes are integrated into the architecture. The space feels safe, clean, and architecturally thoughtful. High key lighting.'
+            },
+            {
+                level: '2',
+                title: 'Outpatient Clinics',
+                departments: ['01. General Practice', '02. Dermatology', '03. ENT Specialists', '04. Phlebotomy'],
+                imagePrompt: 'A precise, minimalist examination room. A single sleek exam table sits center, surrounded by seamless built-in cabinetry in a soft stone color. There is no clutter. The lighting is bright, even, and clinical yet aesthetically pleasing, resembling a high-end wellness spa more than a standard hospital. Deep depth of field.'
+            },
+            {
+                level: '1',
+                title: 'Diagnostics & Labs',
+                departments: ['01. Pathology Lab', '02. Blood Bank', '03. Radiology Reading', '04. Staff Amenities'],
+                imagePrompt: 'A highly organized, cutting-edge pathology laboratory space. Endless rows of clean white benches, advanced machinery, and spotless concrete floors. The space is vast, emphasizing a sense of scale and clinical integrity. The lighting is
+            floorImageEl.style.opacity = '0.5';
+            departmentListEl.style.opacity = '0';
+            floorTitleEl.style.opacity = '0';
+
+            setTimeout(() => {
+                // Update text
+                floorTitleEl.textContent = data.title;
+                
+                // Update departments
+                departmentListEl.innerHTML = '';
+                data.departments.forEach(dept => {
+                    const div = document.createElement('div');
+                    div.className = 'border-b border-outline/20 pb-3 font-label-technical text-label-technical text-on-surface';
+                    div.textContent = dept;
+                    departmentListEl.appendChild(div);
+                });
+
+                // Update Image attributes (simulating image change)
+                floorImageEl.setAttribute('data-alt', data.imagePrompt);
+                imageCaptionEl.textContent = `Architectural view of Level ${data.level}`;
+
+                // Fade in
+                floorImageEl.style.opacity = '1';
+                departmentListEl.style.opacity = '1';
+                floorTitleEl.style.opacity = '1';
+                
+                // Add simple transition classes to elements if not present
+                departmentListEl.classList.add('transition-opacity', 'duration-500');
+                floorTitleEl.classList.add('transition-opacity', 'duration-500');
+
+            }, 300); // Wait for fade out
+        }
+
+        // Initialize
+        renderList();
+        updateContent();
+
+    </script>
+<script type="module" src="/enhance.js"></script>
+</body></html>

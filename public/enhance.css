@@ -1,0 +1,459 @@
+/* ═══════════════════════════════════════════════════════════
+   enhance.css — Premium front-end enhancement layer
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Typography & Variables ─────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
+
+:root {
+  --enh-ease: cubic-bezier(.16, 1, .3, 1);
+  --enh-bg: #faf9f6;
+  --enh-ink: #1a1c1a;
+  --enh-accent: #a8895f; /* Muted Brass */
+  --enh-hairline: rgba(26, 28, 26, 0.08);
+}
+
+/* Apply fonts globally */
+* {
+  font-family: 'Urbanist', sans-serif !important;
+}
+html, body {
+  background-color: var(--enh-bg) !important;
+  color: var(--enh-ink) !important;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-bottom: 120px !important; /* Avoid nav pill overlap */
+}
+
+
+
+/* Hide native cursor globally when enhancements are active */
+html.enh,
+html.enh * {
+  cursor: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Custom SVG Smooth Cursor
+   ═══════════════════════════════════════════════════════ */
+.enh-smooth-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 2147483647;
+  transform-origin: center;
+  will-change: transform;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Custom cursor badge ↗
+   ═══════════════════════════════════════════════════════ */
+/* Cursor badge text (e.g. "VIEW ↗") */
+.enh-cursor-badge {
+  display: none; /* Removing text badge */
+}
+
+/* Base SVG styling for scaling */
+.enh-smooth-cursor svg {
+  transform: scale(0.6);
+  transition: transform 0.2s ease-out;
+}
+
+/* Hover state */
+html.enh-hover .enh-smooth-cursor svg {
+  transform: scale(0.7);
+}
+
+/* Light cursor state for dark sections */
+html.enh-dark .enh-smooth-cursor svg {
+  /* SVG handles its own colors, but we can add filters if needed */
+  filter: invert(1);
+}
+
+/* Mousedown state */
+html.enh-down .enh-smooth-cursor svg {
+  transform: scale(0.5);
+}
+
+/* ── Scroll progress line (hidden on mobile) ──────────────── */
+.enh-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1.5px;
+  height: 0%;
+  background: var(--enh-ink);
+  z-index: 2147483646;
+  pointer-events: none;
+  will-change: height;
+  transition: height 80ms linear;
+}
+
+@media (max-width: 767px) {
+  .enh-progress {
+    display: none !important;
+  }
+}
+
+/* ── Section indicator pill ───────────────────────────────── */
+.enh-section-indicator {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: .24em;
+  font-family: 'DM Serif Display', serif;
+  font-weight: 500;
+  color: var(--enh-ink);
+  background: rgba(250, 249, 246, .85);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--enh-hairline);
+  border-radius: 9999px;
+  padding: 8px 18px;
+  z-index: 2147483645;
+  pointer-events: none;
+  transition: opacity 300ms var(--enh-ease),
+              transform 300ms var(--enh-ease);
+}
+
+.enh-section-indicator.hidden {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+/* ── Reveal: fade up ──────────────────────────────────────── */
+.enh-fade {
+  opacity: 0;
+  transform: translate3d(0, 36px, 0);
+  transition: opacity 1.2s var(--enh-ease),
+              transform 1.2s var(--enh-ease);
+  will-change: transform, opacity;
+}
+
+.enh-fade.enh-in {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.enh-fade-l {
+  opacity: 0;
+  transform: translate3d(-36px, 0, 0);
+  transition: opacity 1.2s var(--enh-ease),
+              transform 1.2s var(--enh-ease);
+  will-change: transform, opacity;
+}
+
+.enh-fade-l.enh-in {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.enh-fade-r {
+  opacity: 0;
+  transform: translate3d(36px, 0, 0);
+  transition: opacity 1.2s var(--enh-ease),
+              transform 1.2s var(--enh-ease);
+  will-change: transform, opacity;
+}
+
+.enh-fade-r.enh-in {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* ── Line reveal (clip) ──────────────────────────────────── */
+.enh-line-wrap {
+  overflow: hidden;
+  display: block;
+}
+
+.enh-line {
+  display: block;
+  transform: translate3d(0, 110%, 0);
+  transition: transform 1.2s var(--enh-ease);
+  will-change: transform;
+}
+
+.enh-in .enh-line,
+.enh-line.enh-in {
+  transform: translate3d(0, 0, 0);
+}
+
+/* ── Image clip-wipe + Ken Burns ─────────────────────────── */
+.enh-img {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+/* Wipe overlay */
+.enh-img::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--enh-bg);
+  z-index: 2;
+  transform: scaleX(1);
+  transform-origin: right;
+  transition: transform 900ms var(--enh-ease);
+  will-change: transform;
+}
+
+.enh-img.enh-in::before {
+  transform: scaleX(0);
+}
+
+/* Inner image */
+.enh-img > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  will-change: transform;
+}
+
+/* Ken Burns effect, only triggered via JS when in viewport */
+.enh-img.enh-kb > img {
+  animation: kenBurnsLoop 8s ease-in-out infinite alternate;
+}
+
+@keyframes kenBurnsLoop {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+/* SVG fractal noise grain */
+.enh-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+  pointer-events: none;
+}
+
+/* ── Card hover ──────────────────────────────────────────── */
+.enh-card {
+  transition: transform 500ms var(--enh-ease),
+              box-shadow 500ms var(--enh-ease);
+  will-change: transform;
+}
+
+.enh-card:hover {
+  transform: translate3d(0, -6px, 0);
+  box-shadow: 0 20px 40px -24px rgba(26,28,26,.15);
+}
+
+.enh-card:hover img {
+  transform: scale(1.04) !important;
+}
+
+/* ── Nav link underline ──────────────────────────────────── */
+.enh-nav-link {
+  position: relative;
+}
+
+.enh-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 400ms var(--enh-ease);
+  will-change: transform;
+}
+
+.enh-nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* ── Magnetic element ────────────────────────────────────── */
+.enh-magnet {
+  transition: transform 500ms var(--enh-ease);
+  will-change: transform;
+}
+
+/* ── Section number ──────────────────────────────────────── */
+.enh-section-num {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(110px, 18vw, 240px);
+  font-weight: 300;
+  line-height: 1;
+  color: rgba(26, 28, 26, 0.03);
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition: opacity 1.2s var(--enh-ease),
+              transform 1.2s var(--enh-ease);
+  will-change: transform, opacity;
+  z-index: 0;
+}
+
+.enh-section.enh-in .enh-section-num {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.enh-section {
+  position: relative;
+}
+
+/* ── Nav glass refinement ────────────────────────────────── */
+.enh-nav-frosted {
+  background: rgba(250, 249, 246, 0.72) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(1.5) !important;
+  backdrop-filter: blur(28px) saturate(1.5) !important;
+  border-bottom: 1px solid var(--enh-hairline) !important;
+}
+
+/* ── Kinetic display typography ──────────────────────────── */
+.enh-kinetic-container {
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
+  padding: 80px 0;
+  border-top: 1px solid var(--enh-hairline);
+  border-bottom: 1px solid var(--enh-hairline);
+}
+
+.enh-kinetic-text {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20vw;
+  font-weight: 200;
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: var(--enh-ink);
+  opacity: 0.15;
+  display: inline-block;
+  will-change: transform;
+}
+
+/* ── Hairline borders utility ────────────────────────────── */
+.hairline-top { border-top: 1px solid var(--enh-hairline) !important; }
+.hairline-bottom { border-bottom: 1px solid var(--enh-hairline) !important; }
+.hairline-left { border-left: 1px solid var(--enh-hairline) !important; }
+
+/* ── External link indicator ─────────────────────────────── */
+a[href^="http"]:not([href*="localhost"]):not([href*="127.0.0.1"])::after {
+  content: " ↗";
+  font-size: 0.85em;
+  display: inline-block;
+}
+
+/* ── Infinite Marquee ──────────────────────────────────────── */
+@keyframes enhMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 1rem)); }
+}
+
+.enh-marquee {
+  display: flex;
+  width: max-content;
+  animation: enhMarquee 30s linear infinite;
+  will-change: transform;
+}
+.enh-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* ══════════════════════════════════════════════════════════
+   Reduced motion fallback
+   ══════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .enh-fade,
+  .enh-fade-l,
+  .enh-fade-r,
+  .enh-line,
+  .enh-img::before,
+  .enh-img > img,
+  .enh-card,
+  .enh-magnet,
+  .enh-section-num,
+
+
+  .enh-nav-link::after,
+  .enh-kinetic-text {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .enh-fade,
+  .enh-fade-l,
+  .enh-fade-r {
+    opacity: 1 !important;
+  }
+
+  .enh-line {
+    transform: none !important;
+  }
+
+  .enh-img::before {
+    transform: scaleX(0) !important;
+  }
+
+  .enh-section-num {
+    opacity: 1 !important;
+  }
+}
+
+/* ── Coarse pointer media override ────────────────────────── */
+@media (pointer: coarse) {
+  html.enh,
+  html.enh * {
+    cursor: auto !important;
+  }
+
+
+
+  .enh-cursor-badge {
+    display: none !important;
+  }
+}
+
+@keyframes fadeUpText {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.anim-fade-up {
+  opacity: 0;
+  animation: fadeUpText 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes scrollLineAnim {
+  0% { transform: translateY(-100%); }
+  50% { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}
+
+/* Hide scrollbar */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

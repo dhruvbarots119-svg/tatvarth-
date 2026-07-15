@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Amenities | Aethelgard Pavilion</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1a1c1a",
+              secondary: "#a8895f",
+              accent: "#a8895f",
+              background: "#faf9f6",
+              surface: "#faf9f6",
+              "on-surface": "#1a1c1a",
+              "on-surface-variant": "rgba(26,28,26,0.6)",
+              "surface-container": "#efeeeb",
+              "surface-container-low": "#f4f3f1",
+              "surface-container-high": "#e9e8e5",
+              "surface-container-highest": "#e3e2e0",
+              "surface-container-lowest": "#ffffff",
+              outline: "rgba(26,28,26,0.08)",
+              "outline-variant": "rgba(26,28,26,0.15)"
+            },
+            fontFamily: {
+              sans: ["IBM Plex Mono", "monospace"],
+              serif: ["IBM Plex Mono", "monospace"],
+              display: ["IBM Plex Mono", "monospace"],
+              body: ["IBM Plex Mono", "monospace"],
+              mono: ["IBM Plex Mono", "monospace"],
+              "label-technical": ["IBM Plex Mono", "monospace"]
+            },
+            spacing: {
+              gutter: "24px",
+              "margin-mobile": "16px",
+              "margin-desktop": "32px",
+              "section-gap": "clamp(96px, 12vw, 200px)"
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #faf9f6;
+            color: #1a1c1a;
+            scroll-behavior: smooth;
+        }
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+<link rel="stylesheet" href="/enhance.css">
+</head>
+<body class="bg-background text-on-surface font-sans antialiased">
+<main class="pt-32">
+<!-- Hero Section -->
+<header class="relative w-full h-screen overflow-hidden bg-primary select-none flex flex-col justify-between p-12 md:p-24" data-cursor="view">
+  <img class="absolute inset-0 w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKdF-qqUrRDTB1QaYZPspo_bq_-9cC6qB1lZZji37SAlNgbmQrjGsTShkbA5h2nkSqVqynak9NL7QqQrzU5nPdq_YXR4rSz-rFLaHak-789nuRKiCBaWwqjx-69RTlZQmLo_r9MLVSdRRRo9Y5jyM4Q0eWqTLXFyCxmfRnQZ6khxZM9lz_DvVIzcBBTTSGJDVWfwFBpPymgbw6FM3TsAy9ZU2ripKzkSAU9gFmzKWlS9h0Bh4mQ7JIrRrcxJU80Z0TNXc01sfWKAm9" alt="Refinements" />
+  
+  <div class="relative z-10 self-start">
+    <span class="font-serif text-2xl font-light tracking-tight text-white uppercase">Refinements</span>
+  </div>
+  
+  <div class="relative z-10 mt-auto flex flex-col items-start gap-8">
+    <h1 class="text-white font-serif font-light leading-tight text-left max-w-4xl" style="font-size: clamp(48px, 6vw, 96px); letter-spacing: -0.03em;">
+      Supporting complete human well-being.
+    </h1>
+    <div class="flex flex-col items-start gap-4">
+      <span class="text-white/60 font-sans text-xs tracking-[0.24em] uppercase font-medium">Scroll</span>
+      <div class="w-px h-12 bg-white/40 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-white animate-scroll-line" style="animation: scrollLineAnim 2s infinite ease-in-out;"></div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- Amenity 01: Advanced Imaging Suites -->
+<section class="mb-section-gap px-margin-desktop grid grid-cols-12 gap-gutter items-center reveal-on-scroll">
+<div class="col-span-12 md:col-span-8 overflow-hidden aspect-[16/9]">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 scale-105 hover:scale-100" data-alt="A highly realistic, architectural photography style image of a state-of-the-art MRI diagnostic imaging suite in a luxury hospital. The room features warm ambient lighting, sleek minimalist walls with natural wood accents, and a modern MRI machine." src="/images/diagnostic_imaging_suite.png"/>
+</div>
+<div class="col-span-12 md:col-span-4 md:pl-8 mt-unit md:mt-0">
+<p class="font-label-technical text-label-technical text-on-tertiary-container mb-4">01 // DIAGNOSTICS</p>
+<h2 class="font-headline-lg text-headline-lg mb-8">Advanced Imaging Suites</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">
+                    State-of-the-art MRI and CT facilities designed with calming ambient lighting to reduce patient anxiety. The space is vast and uncluttered, providing a serene environment where cutting-edge technology and human-centric design merge.
+                </p>
+<div class="flex items-center gap-4 group cursor-pointer">
+<span class="font-label-caps text-label-caps border-b border-primary py-1">EXPLORE THE TECHNOLOGY</span>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</div>
+</div>
+</section>
+<!-- By the Numbers Section -->
+<section class="bg-surface-container py-section-gap mb-section-gap px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+<div class="reveal-on-scroll">
+<span class="font-label-technical text-label-technical block mb-2">SCALE</span>
+<h3 class="font-display-xl text-display-xl-mobile md:text-display-xl text-primary">15,000</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Square feet of dedicated diagnostic and surgical programming.</p>
+</div>
+<div class="reveal-on-scroll" style="transition-delay: 200ms;">
+<span class="font-label-technical text-label-technical block mb-2">STERILITY</span>
+<h3 class="font-display-xl text-display-xl-mobile md:text-display-xl text-primary">100%</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Independent HVAC zoning across all critical operative theaters.</p>
+</div>
+<div class="reveal-on-scroll" style="transition-delay: 400ms;">
+<span class="font-label-technical text-label-technical block mb-2">WELLNESS</span>
+<h3 class="font-display-xl text-display-xl-mobile md:text-display-xl text-primary">360°</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Focus on biophilic design and patient recovery through integrated nature.</p>
+</div>
+</div>
+</section>
+<!-- Amenity 02: Sterile Operative Theaters -->
+<section class="mb-section-gap px-margin-desktop grid grid-cols-12 gap-gutter items-center reveal-on-scroll">
+<div class="col-span-12 md:col-span-4 order-2 md:order-1 md:pr-8 mt-unit md:mt-0">
+<p class="font-label-technical text-label-technical text-on-tertiary-container mb-4">02 // SURGERY</p>
+<h2 class="font-headline-lg text-headline-lg mb-8">Sterile Operative Theaters</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">
+                    Next-generation surgical floors featuring advanced lighting arrays and sleek stainless steel equipment. Engineered by leading healthcare architects, the environment guarantees maximum sterility, precision, and an unmistakably premium, calming aesthetic.
+                </p>
+<div class="flex items-center gap-4 group cursor-pointer">
+<span class="font-label-caps text-label-caps border-b border-primary py-1">VIEW FLOOR SPECIFICATIONS</span>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</div>
+</div>
+<div class="col-span-12 md:col-span-8 order-1 md:order-2 overflow-hidden aspect-[4/5] md:aspect-[16/9]">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 scale-105 hover:scale-100" data-alt="A highly realistic, architectural photography style image of a sterile, ultra-modern surgical operative theater in a luxury hospital. The room features advanced surgical lighting arrays, sleek stainless steel equipment, and large glass windows offering natural light." src="/images/surgical_theater.png"/>
+</div>
+</section>
+<!-- Amenity 03: Biophilic Healing Lounges -->
+<section class="mb-section-gap px-margin-desktop reveal-on-scroll">
+<div class="grid grid-cols-12 gap-gutter">
+<div class="col-span-12 overflow-hidden aspect-[21/9] mb-12">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 scale-105 hover:scale-100" data-alt="A highly realistic, architectural photography style image of a luxury hospital's biophilic healing lounge. The space features lush indoor greenery, natural light filtering through large glass windows, and premium minimalist lounge seating." src="/images/healing_lounge.png"/>
+</div>
+<div class="col-span-12 md:col-span-6 md:col-start-4 text-center">
+<p class="font-label-technical text-label-technical text-on-tertiary-container mb-4">03 // WELLNESS</p>
+<h2 class="font-headline-lg text-headline-lg mb-8">Biophilic Healing Lounges</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                        High above the urban fray, the healing lounges provide pocket sanctuaries for contemplation and recovery. Every angle is calculated to frame the movement of the sun, bringing natural light and flora indoors to accelerate recovery and provide respite.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Quote Section -->
+<section class="px-margin-desktop mb-section-gap reveal-on-scroll">
+<div class="border-t border-outline-variant/20 pt-16 flex flex-col md:flex-row justify-between gap-12">
+<p class="font-headline-md text-headline-md italic max-w-2xl">
+                    "Space is the breath of art. At Tatvarth, we have sought to create a vessel where life can breathe deeply."
+                </p>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps mb-2">LEAD ARCHITECT</span>
+<span class="font-body-md text-body-md text-primary">Julian Thorne</span>
+<span class="font-label-technical text-label-technical text-on-tertiary-container">Thorne & Associates</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+
+<section class="enh-kinetic-container select-none">
+  <div class="enh-kinetic-text">REFINEMENTS REFINEMENTS REFINEMENTS REFINEMENTS REFINEMENTS</div>
+</section>
+
+<!-- Footer: Split Layout -->
+<footer class="w-full border-t border-outline/10 py-16 px-margin-desktop bg-[#faf9f6]">
+  <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 font-sans text-sm text-[#1a1c1a]">
+    <!-- Left: Real Address Block -->
+    <div class="flex flex-col gap-4">
+      <span class="font-serif text-lg font-light">Tatvarth Heights</span>
+      <p class="text-on-surface-variant leading-relaxed">
+        Aethelgard Pavilion<br/>
+        12 Architecture Way, Suite 700<br/>
+        Wellness District, HC 10080
+      </p>
+    </div>
+    
+    <!-- Center: Navigation Links -->
+    <div class="flex flex-col gap-2 md:items-center">
+      <span class="text-xs uppercase tracking-wider font-semibold text-on-surface-variant mb-2">Navigation</span>
+      <a href="/" class="hover:text-secondary transition-colors">Home</a>
+      <a href="/floors" class="hover:text-secondary transition-colors">Floors</a>
+      <a href="/story" class="hover:text-secondary transition-colors">Story</a>
+      <a href="/amenities" class="hover:text-secondary transition-colors">Amenities</a>
+      <a href="/about" class="hover:text-secondary transition-colors">Explorer</a>
+    </div>
+    
+    <!-- Right: Colophon & Year -->
+    <div class="flex flex-col gap-4 md:items-end md:text-right">
+      <span class="text-xs uppercase tracking-wider font-semibold text-on-surface-variant">Colophon</span>
+      <p class="text-xs text-on-surface-variant leading-relaxed">
+        Typography set in Fraunces &amp; Inter Tight.<br/>
+        All structural designs subject to copyright.<br/>
+        &copy; 2026 Tatvarth Heights. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>
+<script>
+        // Intersection Observer for Scroll Revelations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // Subtle Header Backdrop Blur Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-surface/80');
+            } else {
+                nav.classList.remove('bg-surface/80');
+            }
+        });
+    </script>
+<script type="module" src="/enhance.js"></script>
+</body></html>

@@ -1,0 +1,421 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Tatvarth Heights - Architectural Healthcare</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#1a1c1a",
+            secondary: "#a8895f",
+            accent: "#a8895f",
+            background: "#faf9f6",
+            surface: "#faf9f6",
+            "on-surface": "#1a1c1a",
+            "on-surface-variant": "rgba(26,28,26,0.6)",
+            "surface-container": "#efeeeb",
+            "surface-container-low": "#f4f3f1",
+            "surface-container-high": "#e9e8e5",
+            "surface-container-highest": "#e3e2e0",
+            "surface-container-lowest": "#ffffff",
+            outline: "rgba(26,28,26,0.08)",
+            "outline-variant": "rgba(26,28,26,0.15)"
+          },
+          fontFamily: {
+            sans: ["Urbanist", "sans-serif"],
+            serif: ["Urbanist", "sans-serif"],
+            display: ["Urbanist", "sans-serif"],
+            body: ["Urbanist", "sans-serif"],
+            mono: ["Urbanist", "sans-serif"],
+            "label-technical": ["Urbanist", "sans-serif"]
+          },
+          spacing: {
+            gutter: "24px",
+            "margin-mobile": "16px",
+            "margin-desktop": "32px",
+            "section-gap": "clamp(96px, 12vw, 200px)"
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #faf9f6;
+      color: #1a1c1a;
+      font-family: 'IBM Plex Mono', monospace;
+      overflow-x: clip;
+    }
+
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: normal;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .hairline-top {
+      border-top: 1px solid rgba(102, 108, 115, 0.2);
+    }
+
+    .hairline-bottom {
+      border-bottom: 1px solid rgba(102, 108, 115, 0.2);
+    }
+
+    .hairline-left {
+      border-left: 1px solid rgba(102, 108, 115, 0.2);
+    }
+
+    .architectural-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 32px;
+    }
+
+    .asymmetric-mask {
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+    }
+
+    .horizontal-scroll-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .horizontal-scroll-container {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    
+    footer {
+      position: relative;
+    }
+    footer::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      height: 50vh;
+      background-color: #faf9f6;
+    }
+  </style>
+  <link rel="stylesheet" href="/enhance.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap"
+    rel="stylesheet">
+</head>
+
+<body class="bg-background text-on-surface font-sans antialiased">
+  <!-- Hero Section: Split Screen -->
+  <div id="hero-scroll-container" class="relative w-full h-[400vh] bg-primary">
+    <header
+      class="sticky top-0 left-0 w-full h-screen overflow-hidden bg-primary select-none flex flex-col justify-between p-12 md:p-24 z-0"
+      data-cursor="view">
+      <!-- Full-bleed background canvas for scroll frames -->
+      <canvas id="hero-canvas" class="absolute inset-0 w-full h-full opacity-60" style="object-fit: cover;"></canvas>
+
+      <!-- Poetic Line & Scroll Cue Bottom Left -->
+      <div id="hero-text-overlay" class="relative z-10 mt-auto flex flex-col items-start gap-8">
+        <h1 class="text-white italic font-normal leading-tight text-left max-w-4xl"
+          style="font-size: clamp(64px, 8.5vw, 120px); letter-spacing: -0.03em; text-shadow: 0 4px 16px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.2);">
+          The Architecture of Healing.
+        </h1>
+        <div class="flex flex-col items-start gap-4">
+          <span class="text-white/60 font-sans text-xs tracking-[0.24em] uppercase font-medium">Scroll</span>
+          <div class="w-px h-12 bg-white/40 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full bg-white animate-scroll-line"
+              style="animation: scrollLineAnim 2s infinite ease-in-out;"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+
+
+
+  <div class="relative z-10 bg-background -mt-[100vh]">
+    <!-- Editorial Intro: Magazine Layout with Overlap -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop">
+      <div class="architectural-grid">
+        <div class="col-span-12 md:col-span-3 lg:col-span-2 hidden md:block">
+          <!-- Removed 01 The Concept label -->
+        </div>
+        <div class="col-span-12 md:col-span-9 lg:col-span-10 relative">
+
+          <div class="grid grid-cols-12 gap-8 lg:gap-16 items-center">
+            <!-- Canvas on the left -->
+            <div class="hidden md:block col-span-12 lg:col-span-6 w-full aspect-[848/1084] relative"
+              id="second-canvas-container">
+              <canvas id="second-canvas"
+                class="absolute inset-0 w-full h-full grayscale hover:grayscale-0 transition-all duration-1000"></canvas>
+            </div>
+
+            <!-- Text Card on the right -->
+            <div class="col-span-12 lg:col-span-6 relative z-10">
+              <div class="bg-surface-container p-12 md:p-16 shadow-2xl">
+                <div class="font-body-lg text-[130%] leading-relaxed text-on-surface-variant space-y-8">
+                  <p>
+                    We approach healthcare design with the same rigor and emotional sensitivity as a high-end
+                    hospitality project. The spaces are defined by natural light, tactile materials like limestone and
+                    oak, and acoustics engineered for stillness.
+                  </p>
+                  <p>
+                    Every structural decision serves a dual purpose: operational precision for medical professionals and
+                    profound calm for visiting patients.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Structural Layout: Wide Image, Narrow Side Text -->
+    <section class="py-section-gap bg-surface-container px-margin-mobile md:px-margin-desktop">
+      <div class="max-w-[1440px] mx-auto">
+        <div class="flex flex-col md:flex-row gap-gutter items-end mb-16">
+          <div class="w-full md:w-1/4">
+            <span class="font-label-technical text-label-technical uppercase text-on-surface-variant block mb-4">02 —
+              Structural Layout</span>
+            <h2 class="font-headline-md text-headline-md text-primary">Vertical Integration</h2>
+          </div>
+          <div id="floor-tabs"
+            class="w-full md:w-3/4 flex flex-wrap justify-end gap-x-8 gap-y-4 font-label-technical text-label-technical border-b border-outline/10 pb-4">
+            <button data-level="7" class="floor-tab border-b-2 border-primary pb-2 -mb-[18px] transition-colors">Level 07</button>
+            <button data-level="6" class="floor-tab text-on-surface-variant hover:text-primary transition-colors">Level 06</button>
+            <button data-level="5" class="floor-tab text-on-surface-variant hover:text-primary transition-colors">Level 05</button>
+            <button data-level="4" class="floor-tab text-on-surface-variant hover:text-primary transition-colors">Level 04</button>
+            <button data-level="3" class="floor-tab text-on-surface-variant hover:text-primary transition-colors">Level 03</button>
+            <button data-level="2" class="floor-tab text-on-surface-variant hover:text-primary transition-colors">Level 02</button>
+            <button data-level="1" class="floor-tab text-on-surface-variant hover:text-primary transition-colors">Level 01</button>
+          </div>
+        </div>
+        <div class="flex flex-col lg:flex-row-reverse items-stretch gap-gutter">
+          <!-- Wide Image Container -->
+          <div class="w-full lg:w-3/4 bg-white p-12 md:p-24 overflow-hidden relative group">
+            <div id="floor-image"
+              class="bg-contain bg-center bg-no-repeat w-full h-[400px] md:h-[700px] opacity-90 transition-all duration-500 group-hover:scale-[1.02]"
+              data-alt="Technical architectural floor plan blueprint"
+              style="background-image: url('/images/level_07_bw_1784138300684.png')">
+            </div>
+          </div>
+          <!-- Narrow Side Text -->
+          <div class="w-full lg:w-1/4 flex flex-col justify-center py-12 lg:pr-12">
+            <div id="floor-text-container" class="border-l-4 border-primary pl-8 transition-opacity duration-500">
+              <h3 id="floor-title" class="font-headline-md text-headline-md text-primary mb-6">Diagnostic Core</h3>
+              <p id="floor-desc" class="font-body-md text-body-md text-on-surface-variant mb-12">
+                The seventh level is engineered to support advanced imaging and diagnostics, featuring structural
+                reinforcements and specialized acoustic damping to isolate sensitive equipment.
+              </p>
+              <ul id="floor-features" class="font-label-technical text-label-technical text-on-surface space-y-6">
+                <li class="flex items-center gap-4"><span class="w-2 h-2 bg-primary"></span> 1.5T MRI Suite</li>
+                <li class="flex items-center gap-4"><span class="w-2 h-2 bg-primary"></span> High-Resolution CT</li>
+                <li class="flex items-center gap-4"><span class="w-2 h-2 bg-primary"></span> Pathology Laboratory</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Interior Volumes: Overlapping Asymmetry -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop relative overflow-hidden">
+      <div class="architectural-grid mb-32">
+        <div class="col-span-12 md:col-span-3">
+          <span class="font-label-technical text-label-technical uppercase text-on-surface-variant block mb-8">03 —
+            Interior Volumes</span>
+        </div>
+        <div class="col-span-12 md:col-span-9 lg:col-span-7">
+          <h2
+            class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary">
+            Quiet environments meticulously detailed to reduce friction and anxiety.
+          </h2>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row gap-24 lg:gap-32">
+        <!-- Left Space: Horizontal Focus with Content Overlay -->
+        <div class="w-full md:w-[45%] group relative">
+          <div class="aspect-square overflow-hidden bg-surface-container">
+            <img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+              data-alt="Modern medical building facade"
+              src="/images/facade.jpg" />
+          </div>
+          <div
+            class="absolute -bottom-12 right-0 md:-right-12 bg-white p-10 max-w-sm shadow-xl border border-outline/5">
+            <h3 class="font-headline-md text-headline-md text-primary mb-3">Consultation Suites</h3>
+            <p class="font-label-technical text-label-technical text-on-surface-variant uppercase tracking-wider">
+              Acoustically isolated environments.</p>
+          </div>
+        </div>
+        <!-- Right Space: Vertical Focus Offset -->
+        <div class="w-full md:w-2/5 md:mt-48 group">
+          <div class="aspect-[3/4] overflow-hidden bg-surface-container mb-8">
+            <canvas id="reception-canvas" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"></canvas>
+          </div>
+          <h3 class="font-headline-md text-headline-md text-primary mb-2">The Atrium Arrival</h3>
+          <p class="font-label-technical text-label-technical text-on-surface-variant uppercase tracking-wider">
+            Double-height volumes for orientation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Evolution Journey Sequence -->
+    <section class="h-[500vh] relative bg-primary text-white" id="construction-section">
+      <div class="sticky top-0 h-screen flex flex-col md:flex-row items-center overflow-hidden">
+        <!-- Text Card -->
+        <div class="w-full md:w-1/2 p-12 md:p-24 flex flex-col justify-center h-1/2 md:h-full z-10 order-2 md:order-1 bg-primary">
+          <span class="font-label-technical text-label-technical uppercase text-white/50 block mb-6 tracking-widest">Evolution Journey</span>
+          <h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg mb-8 text-white">
+            Witness the transformation of healing spaces.
+          </h2>
+          <p class="font-body-lg text-body-lg text-white/70">
+            From raw structural vision to refined architectural elegance. Every detail in Tatvarth Heights is meticulously engineered to foster an environment of complete well-being and clinical precision.
+          </p>
+        </div>
+        <!-- Video Frame Container -->
+        <div class="w-full h-1/2 md:w-1/2 md:h-full flex items-center justify-center bg-[#0a0a0a] order-1 md:order-2">
+          <canvas id="construction-canvas" width="1080" height="1920" class="w-full h-full object-contain"></canvas>
+        </div>
+    </section>
+
+    <!-- Amenities: Horizontal Scrolling Sequence -->
+    <section class="py-section-gap bg-surface-container-low">
+      <div
+        class="px-margin-mobile md:px-margin-desktop mb-20 flex flex-col md:flex-row justify-between items-end gap-8">
+        <div class="max-w-2xl">
+          <span
+            class="font-label-technical text-label-technical uppercase text-on-surface-variant block mb-6 tracking-widest">04
+            — Refinements</span>
+          <h2
+            class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary">
+            An ecosystem of amenities designed to support complete well-being.
+          </h2>
+        </div>
+      </div>
+      <div id="refinements-wrapper" class="overflow-x-auto overflow-y-hidden w-full pb-12 snap-x snap-mandatory hide-scrollbar cursor-grab active:cursor-grabbing scroll-smooth">
+        <div id="refinements-scroll" class="flex w-max gap-8 px-margin-mobile md:px-margin-desktop">
+        <!-- Amenity 1 (Floor 1 equivalent) -->
+        <div class="min-w-[320px] md:min-w-[450px] bg-white border-t-8 border-primary flex flex-col h-[500px] overflow-hidden snap-center">
+          <img src="/images/emergency_trauma.webp" loading="lazy" decoding="async" class="w-full h-48 object-cover grayscale hover:grayscale-0 transition-all duration-1000" />
+          <div class="p-8 flex flex-col flex-1 justify-between">
+            <div>
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-6 text-primary"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              <h4 class="font-headline-md text-headline-md text-primary mb-4">Emergency & Trauma</h4>
+              <p class="font-body-md text-body-md text-on-surface-variant">Rapid access resuscitation bays and fast-track triage zones engineered for critical immediacy.</p>
+            </div>
+            <span class="font-label-technical text-label-technical text-primary/30 text-4xl self-end">01</span>
+          </div>
+        </div>
+        <!-- Amenity 2 (Floor 2 equivalent) -->
+        <div class="min-w-[320px] md:min-w-[450px] bg-white border-t-8 border-outline/10 flex flex-col h-[500px] mt-12 overflow-hidden snap-center">
+          <img src="/images/consultation_suite.webp" loading="lazy" decoding="async" class="w-full h-48 object-cover grayscale hover:grayscale-0 transition-all duration-1000" />
+          <div class="p-8 flex flex-col flex-1 justify-between">
+            <div>
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-6 text-primary"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>
+              <h4 class="font-headline-md text-headline-md text-primary mb-4">Polyclinic Suites</h4>
+              <p class="font-body-md text-body-md text-on-surface-variant">High-throughput specialist consultation suites and minor procedure rooms tailored for independent practitioners.</p>
+            </div>
+            <span class="font-label-technical text-label-technical text-primary/30 text-4xl self-end">02</span>
+          </div>
+        </div>
+        <!-- Amenity 3 (Floor 3 equivalent) -->
+        <div class="min-w-[320px] md:min-w-[450px] bg-white border-t-8 border-primary flex flex-col h-[500px] overflow-hidden snap-center">
+          <img src="/images/diagnostic_imaging_suite.webp" loading="lazy" decoding="async" class="w-full h-48 object-cover grayscale hover:grayscale-0 transition-all duration-1000" />
+          <div class="p-8 flex flex-col flex-1 justify-between">
+            <div>
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-6 text-primary"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              <h4 class="font-headline-md text-headline-md text-primary mb-4">Cardiovascular Center</h4>
+              <p class="font-body-md text-body-md text-on-surface-variant">Dedicated to cardiovascular care, featuring specialized catheterization labs and non-invasive cardiac diagnostic environments.</p>
+            </div>
+            <span class="font-label-technical text-label-technical text-primary/30 text-4xl self-end">03</span>
+          </div>
+        </div>
+        <!-- Amenity 4 (Floor 4 equivalent) -->
+        <div class="min-w-[320px] md:min-w-[450px] bg-white border-t-8 border-outline/10 flex flex-col h-[500px] mt-12 overflow-hidden snap-center">
+          <img src="/images/surgical_theater.webp" loading="lazy" decoding="async" class="w-full h-48 object-cover grayscale hover:grayscale-0 transition-all duration-1000" />
+          <div class="p-8 flex flex-col flex-1 justify-between">
+            <div>
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-6 text-primary"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+              <h4 class="font-headline-md text-headline-md text-primary mb-4">Intensive Care Unit</h4>
+              <p class="font-body-md text-body-md text-on-surface-variant">High-acuity isolation rooms equipped with advanced telemetry and life-support monitoring.</p>
+            </div>
+            <span class="font-label-technical text-label-technical text-primary/30 text-4xl self-end">04</span>
+          </div>
+        </div>
+        <!-- Amenity 5 (Diagnostic Core) -->
+        <div class="min-w-[320px] md:min-w-[450px] bg-white border-t-8 border-primary flex flex-col h-[500px] overflow-hidden snap-center">
+          <img src="/images/diagnostic_imaging_suite.webp" loading="lazy" decoding="async" class="w-full h-48 object-cover grayscale hover:grayscale-0 transition-all duration-1000" />
+          <div class="p-8 flex flex-col flex-1 justify-between">
+            <div>
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-6 text-primary"><path d="M12 10a2 2 0 100-4 2 2 0 000 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+              <h4 class="font-headline-md text-headline-md text-primary mb-4">Advanced Diagnostics</h4>
+              <p class="font-body-md text-body-md text-on-surface-variant">State-of-the-art MRI and CT imaging facilities supported by robust structural reinforcements.</p>
+            </div>
+            <span class="font-label-technical text-label-technical text-primary/30 text-4xl self-end">05</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="enh-kinetic-container select-none">
+      <div class="enh-kinetic-text">TATVARTH HEIGHTS TATVARTH HEIGHTS TATVARTH HEIGHTS TATVARTH HEIGHTS TATVARTH HEIGHTS</div>
+    </section>
+
+    <!-- Footer: Split Layout -->
+    <footer class="w-full border-t border-outline/10 py-16 px-margin-desktop bg-[#faf9f6]">
+      <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 font-sans text-sm text-[#1a1c1a]">
+        <!-- Left: Real Address Block -->
+        <div class="flex flex-col gap-4">
+          <span class="font-serif text-lg font-light">Tatvarth Heights</span>
+          <p class="text-on-surface-variant leading-relaxed">
+            Aethelgard Pavilion<br />
+            12 Architecture Way, Suite 700<br />
+            Wellness District, HC 10080
+          </p>
+        </div>
+
+        <!-- Center: Navigation Links -->
+        <div class="flex flex-col gap-2 md:items-center">
+          <span class="text-xs uppercase tracking-wider font-semibold text-on-surface-variant mb-2">Navigation</span>
+          <a href="/" class="hover:text-secondary transition-colors">Home</a>
+          <a href="/floors" class="hover:text-secondary transition-colors">Floors</a>
+          <a href="/story" class="hover:text-secondary transition-colors">Story</a>
+          <a href="/amenities" class="hover:text-secondary transition-colors">Amenities</a>
+          <a href="/about" class="hover:text-secondary transition-colors">Explorer</a>
+        </div>
+
+        <!-- Right: Colophon & Year -->
+        <div class="flex flex-col gap-4 md:items-end md:text-right">
+          <span class="text-xs uppercase tracking-wider font-semibold text-on-surface-variant">Colophon</span>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Typography set in Fraunces &amp; Inter Tight.<br />
+            All structural designs subject to copyright.<br />
+            &copy; 2026 Tatvarth Heights. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script type="module" src="/enhance.js"></script>
+</body>
+
+</html>
